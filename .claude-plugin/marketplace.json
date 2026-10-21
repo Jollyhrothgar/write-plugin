@@ -1,0 +1,15 @@
+{
+  "name": "write-plugin",
+  "description": "The write Claude Code plugin, installable on its own.",
+  "owner": {
+    "name": "Mike Beaumier",
+    "url": "https://github.com/Jollyhrothgar"
+  },
+  "plugins": [
+    {
+      "name": "write",
+      "source": "./",
+      "description": "Check and repair prose before it leaves the session: a blind subagent finds references the reader cannot resolve, an informed one replaces them and returns a change log."
+    }
+  ]
+}
