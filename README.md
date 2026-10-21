@@ -14,8 +14,8 @@ informed one replaces them and returns a change log.
 ## Install
 
 ```bash
-claude plugin marketplace add Jollyhrothgar/personal_ai_config
-claude plugin install write@jollyhrothgar
+claude plugin marketplace add Jollyhrothgar/write-plugin
+claude plugin install write@write-plugin
 ```
 
 To try a working copy without installing: `claude --plugin-dir .`
