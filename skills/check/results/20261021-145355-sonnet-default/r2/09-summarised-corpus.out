@@ -1,0 +1,36 @@
+```
+FINDINGS: 11
+
+- SPAN: "**2. Wrong audience model.**"
+  ASK: Numbered 2 in what series? No items 1, 3, 4 appear, and nothing says what the list is (failure modes, edits, rules?) or where it comes from.
+
+- SPAN: "re-read before you start anything"
+  ASK: Re-read what? Which message or document was this draft addressed to, and who wrote it and in what medium?
+
+- SPAN: "please land it now"
+  ASK: What is "it"? Land where (merge, deploy, post)? In what context was this said?
+
+- SPAN: "thanks for asking before starting"
+  ASK: Asking what, starting what? Who was asking, and what was the underlying task?
+
+- SPAN: "an implementer awaiting permission"
+  ASK: Who is this implementer, and what were they awaiting permission for? Is this a specific person or a role?
+
+- SPAN: "received → I own this → here's the plan → comments?"
+  ASK: Is this a template or structure the author devised? Does the arrow sequence name a known pattern, and what does each step contain?
+
+- SPAN: "after Mike stated the facts"
+  ASK: Who is Mike, and which facts did he state? In what channel and about what?
+
+- SPAN: "**5. Changelog relitigation.**"
+  ASK: What is the series (why 5, where are 1, 3, 4)? What "changelog" is meant, and what was being relitigated?
+
+- SPAN: "Where I went further… Your version changed provenance but kept location… I'd initially cut it. Wrong call…"
+  ASK: Whose version is "your version"? What are "provenance" and "location" here (of what thing)? What is "it" that was initially cut? What did "went further" refer to?
+
+- SPAN: "the message narrated its own revision history"
+  ASK: Which message? Where was it sent, and to whom, and what was the revision history of?
+
+- SPAN: "Replaced with the plan as it now is."
+  ASK: Which plan? What does it contain and what is it a plan for? Also, is "Mike" in the quoted slack message the same Mike as above, and what is the Slack context (channel, recipient)?
+```

@@ -1,0 +1,30 @@
+```
+FINDINGS: 9
+
+- SPAN: "#485"
+  ASK: Is this a pull request (Sam wrote it, so probably), and what does it change? Which repository? The draft never says what the PR does beyond "detection logic".
+
+- SPAN: "the 413 outage"
+  ASK: What is 413 (incident number, ticket, HTTP status, PR)? What broke, and how does it relate to #485?
+
+- SPAN: "the three-dot diff"
+  ASK: Which exact git operation is meant (e.g. `A...B` against which refs), and where in the script is it used?
+
+- SPAN: "`MDRT`"
+  ASK: What is MDRT? Is it a git diff-filter, a variable, a status code, or something else, and what does it do in the detection logic?
+
+- SPAN: "the `0001` edit"
+  ASK: Which edit is this? What file does 0001 refer to, who made the edit, and in what change?
+
+- SPAN: "the prek hook"
+  ASK: What is prek, and which hook is this? Is it the `migrations-append-only` hook named later, and where is it defined?
+
+- SPAN: "the script takes its defaulted-base skip"
+  ASK: Which script is this, and what is the "defaulted-base skip"? What condition triggers it, and why does it exit 0?
+
+- SPAN: "`migrations-immutable`"
+  ASK: What is this: a workflow, a job, or a check name? Where is it defined, and how does it relate to the `migrations-append-only` hook mentioned later?
+
+- SPAN: "`lockstep.rs`"
+  ASK: Where does this file live, and what does it test or enforce? What is the "lockstep" being referred to, and why does it read `0009_feature_flags.sql`?
+```

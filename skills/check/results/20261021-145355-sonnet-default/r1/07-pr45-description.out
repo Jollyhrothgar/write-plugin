@@ -1,0 +1,30 @@
+```
+FINDINGS: 9
+
+- SPAN: "Closes PLAT-4841"
+  ASK: What is PLAT-4841 (what does the ticket say), and where can I read it? No link is given.
+
+- SPAN: "OpenCode"
+  ASK: Is this a tool the reader is assumed to know? What is it, and what is "the skill→slash-command behavior" it lacks that Claude Code and Cursor have natively?
+
+- SPAN: "thin wrapper commands"
+  ASK: Which specific commands count as "thin wrappers", and what do they wrap? Where are they defined?
+
+- SPAN: "with a proven-equivalent invocation surface"
+  ASK: What does "equivalent" mean here (same name, arguments, behavior?), who proved it, and where is the proof?
+
+- SPAN: "`aic` plugin"
+  ASK: What is `aic`? Is it a project, a tool, or a plugin namespace, and what does it do?
+
+- SPAN: "`user-invocable: true`"
+  ASK: Where is this field defined (skill frontmatter?), and which schema or spec says what it does?
+
+- SPAN: "A pure pass-through / B name-mismatch / C logic-bearing / D standalone"
+  ASK: What are the exact criteria for each class? How is "pass-through" decided, and what does "standalone" mean relative to skills? The text "Class A" is used later, but what the classes are is only given in this terse form.
+
+- SPAN: "Retire 13 Class A wrappers"
+  ASK: Which 13 commands are they? Is there a list, or does it come from the script's output? Which skill does each map to?
+
+- SPAN: "12-file blast radius incl. cross-skill delegation + Rust test fixtures"
+  ASK: Which 12 files? What is "cross-skill delegation" (which skills delegate to `pr-comments-review`), and which Rust test fixtures reference the name? Also, what is the difference between `pr-comments` and `pr-comments-review`, and why does `pr-comments` count as a wrapper that was kept rather than retired?
+```

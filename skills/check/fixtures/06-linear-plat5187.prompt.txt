@@ -1,0 +1,20 @@
+READER: An engineer opening this Linear ticket months later. They were not present for the review that produced it and have no access to the session that wrote it.
+
+DRAFT:
+# Findings that cite docs as design intent must quote the governing statement, not a supporting line
+
+## Problem
+
+A review finding argued that code violated its documented design intent, and cited a specific line of the design document as evidence. The citation was accurate. It was also **eleven lines after the statement that says the opposite**, and the finding did not mention it.
+
+This is the most dangerous failure mode observed in the round, because the finding was *persuasive*: correctly categorised as `should_fix [correctness]`, mechanically accurate about the code, and backed by a real quote from a real file.
+
+## Evidence
+
+Round-6 review of `acme/platform` PR #413.
+
+**The finding:** the vendor-risk report's `overallSafety.materiallyUnsafe` flag — a free-form model judgement that some danger exists outside the 13-rule catalog — does not influence the computed verdict.
+
+## Notes
+
+Two of twelve findings in this round were refuted on their premises. The other ([PLAT-5187](https://linear.app/acme/issue/PLAT-5187)) proposed a fix that was not implementable.

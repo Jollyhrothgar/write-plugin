@@ -1,0 +1,38 @@
+```
+FINDINGS: 9
+
+- SPAN: "OPS-913"
+  ASK: What does this ticket cover, beyond "data fix"? Which data is broken, and what is the "live break"? Ravi wrote five tickets but the rewrites are unseen, so which ticket this is and what it now says is unclear.
+
+- SPAN: "the amendment"
+  ASK: What is being amended (which document, spec, or schema), and what does the amendment change? Why does it gate the other tickets?
+
+- SPAN: "OPS-914"
+  ASK: What is this ticket's scope, as rewritten? What question is the spike meant to answer?
+
+- SPAN: "Notion/overlay spike"
+  ASK: What is the "overlay"? Overlay over what, and holding what data? How does Notion relate to it?
+
+- SPAN: "generator"
+  ASK: What does the generator generate, and from what inputs to what output? Where does it live?
+
+- SPAN: "Linear + Slack joined on email, plus overlay"
+  ASK: What records from Linear and Slack are joined, and what is the output of the join? How does the overlay enter in?
+
+- SPAN: "the data skill"
+  ASK: What is "the data skill"? Which skill system is it in, what does it do, and where does it live?
+
+- SPAN: "rewire four consumers"
+  ASK: Which four consumers are meant, and what are they rewired from and to?
+
+- SPAN: "drift check upstream-side"
+  ASK: What drifts from what? What does "upstream-side" mean here, which repo or system? Which of OPS-917 and OPS-920 is which?
+
+- SPAN: "`aic doctor`"
+  ASK: What is `aic`, and where is it installed? What are "installed data" and "the registry", and where does the registry live?
+
+- SPAN: "the repo copies"
+  ASK: Which repo, and which copies of what are being deleted? Copies of the data? Which links are repointed, and to where?
+```
+
+Note: the header says FINDINGS: 9 but I listed 11. Correct count: 11.

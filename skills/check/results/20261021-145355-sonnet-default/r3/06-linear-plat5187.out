@@ -1,0 +1,36 @@
+```
+FINDINGS: 11
+
+- SPAN: "A review finding argued that code violated its documented design intent"
+  ASK: Which finding, in which review, about which code? Which design document is meant, and where does it live?
+
+- SPAN: "eleven lines after the statement that says the opposite"
+  ASK: Which statement, in which file, and what does it say? What line is the cited one, and what exactly does it say? The draft quotes neither.
+
+- SPAN: "the round"
+  ASK: What is a "round" here? What process or series of reviews does it belong to, and which one is this?
+
+- SPAN: "`should_fix [correctness]`"
+  ASK: What system uses this label? What are the other severity values and categories, and who assigns them?
+
+- SPAN: "Round-6 review"
+  ASK: What is a round, and what are rounds 1 through 5? Who ran the review (human, automated tool, agent), and where are its outputs?
+
+- SPAN: "`acme/platform` PR #413"
+  ASK: Is this a GitHub repo (or another host)? What link points to it? What does PR #413 change?
+
+- SPAN: "the vendor-risk report"
+  ASK: Which report is this? What generates it, and where is it defined?
+
+- SPAN: "`overallSafety.materiallyUnsafe`"
+  ASK: Where is this field defined (what type or schema)? What are its possible values and who sets them?
+
+- SPAN: "the 13-rule catalog"
+  ASK: Which catalog is this? Where does it live, and what are its 13 rules?
+
+- SPAN: "the computed verdict"
+  ASK: What verdict is meant, computed by what code, and what values can it take?
+
+- SPAN: "Two of twelve findings in this round were refuted on their premises. The other ([PLAT-5187](https://linear.app/acme/issue/PLAT-5187))"
+  ASK: Which twelve findings, and which two were refuted? "The other" is ambiguous, since two refuted findings are mentioned and only one is named. Which one is PLAT-5187, and what was the proposed fix that was not implementable? Also, what is the ticket's relationship to this one, and is the link a self-reference?
+```

@@ -1,0 +1,126 @@
+{
+  "01-slack-413-rejected": {
+    "require": [
+      [
+        "413 outage"
+      ],
+      [
+        "0001` edit",
+        "0001 edit"
+      ],
+      [
+        "three-dot"
+      ]
+    ],
+    "forbid": [],
+    "verdict": "Rejected twice by Mike. He named three phrases: \"413 outage\", \"three-dot diff\", \"the 0001 edit\".",
+    "tolerable": []
+  },
+  "02-slack-413-sent": {
+    "require": [],
+    "forbid": [
+      "sqlx",
+      "migration 0001",
+      "the hash"
+    ],
+    "verdict": "POSITIVE CONTROL. Written by Sam Okafor and sent. Mike's ruling 2026-08-05: the flags on 'migration (init) step' and 'the API server' are acceptable \u2014 Slack is conversational and Okafor is not going to robotically link every database reference. Real ambiguity, not worth fixing on this surface. The same spans in a Linear ticket would be defects.",
+    "tolerable": [
+      "migration (init) step",
+      "the API server",
+      "dev/stage/prod"
+    ]
+  },
+  "03-review-coined-term": {
+    "require": [
+      [
+        "working-state compression"
+      ]
+    ],
+    "forbid": [],
+    "verdict": "Rejected. Mike: \"What is this 'stop handing you working-state compression'\". The term was coined inside an apology for coining terms.",
+    "tolerable": []
+  },
+  "04-slack-ticket-labels": {
+    "require": [
+      [
+        "the amendment"
+      ],
+      [
+        "Notion/overlay spike",
+        "overlay spike",
+        "overlay"
+      ],
+      [
+        "generator: Linear + Slack",
+        "generator"
+      ]
+    ],
+    "forbid": [],
+    "verdict": "Rejected. Mike: \"'the amendment' - what is that. 'notion / overaly spike' -> no idea what that means. generateor: Linear + slack -> again no idea what that means.\"",
+    "tolerable": []
+  },
+  "05-slack-padding": {
+    "require": [],
+    "forbid": [],
+    "verdict": "NEGATIVE CONTROL for the detector. Mike cut all three passages as padding, not as unresolvable. Clarity findings here are tolerable on Slack; a future padding check owns the real defect.",
+    "tolerable": [
+      "team.yaml",
+      "docs/team.md",
+      "four tools",
+      "upstream drift",
+      "the one field"
+    ]
+  },
+  "06-linear-plat5187": {
+    "require": [
+      [
+        "the round",
+        "Round-6",
+        "this round"
+      ],
+      [
+        "13-rule catalog"
+      ]
+    ],
+    "forbid": [],
+    "verdict": "Accepted by Mike as \"nearly optimal - but it has warts\". The self-referential PLAT-5187 link in Notes is a separate defect.",
+    "tolerable": []
+  },
+  "07-pr45-description": {
+    "require": [
+      [
+        "thin wrapper"
+      ],
+      [
+        "Class A"
+      ]
+    ],
+    "forbid": [],
+    "verdict": "Merged. Agent-authored, signed by Mike. \"thin wrapper\" is used in sentence one and explained several hundred words later; \"Class A\" is defined in a parenthetical and then load-bears a heading.",
+    "tolerable": []
+  },
+  "08-vault-note": {
+    "require": [
+      [
+        "three-dot"
+      ],
+      [
+        "Kargo rollback lever 2",
+        "lever 2"
+      ],
+      [
+        "Freight",
+        "Warehouse"
+      ]
+    ],
+    "forbid": [],
+    "verdict": "In use. \"three-dot\" is the phrase Mike rejected by name the same day (fixture 01). No lever 1 appears anywhere in the note. Freight and Warehouse are Kargo vocabulary, never introduced.",
+    "tolerable": []
+  },
+  "09-summarised-corpus": {
+    "require": [],
+    "forbid": [],
+    "verdict": "Rejected. Mike: \"You are summarizing in precisely the way that destroys an external reader's ability to actually parse the problem.\" A form failure \u2014 the paraphrase replaced the evidence in a document whose value was the evidence. Clarity findings are beside the point; the form check owns this.",
+    "tolerable": []
+  }
+}

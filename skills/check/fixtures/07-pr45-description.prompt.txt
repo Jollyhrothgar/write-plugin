@@ -1,0 +1,16 @@
+READER: A reviewer with the diff in front of them who did not write the change and was not part of the design discussion. They are deciding whether to approve or reject.
+
+DRAFT:
+Closes PLAT-4841
+
+Gives OpenCode the skill→slash-command behavior Claude Code and Cursor have natively, then retires the now-redundant thin wrapper commands — with a proven-equivalent invocation surface.
+
+## Phases
+
+**1. Plugin (`skills-as-commands`)** — OpenCode-only `aic` plugin (`plugins/registry.toml` scoped `platforms = ["opencode"]` + `plugins/skills-as-commands.js`). At startup it registers a `/` command for every skill with `user-invocable: true`.
+
+**2. Audit + equivalence proof** — `docs/plans/audit_invocation_pairs.py` classifies all commands (A pure pass-through / B name-mismatch / C logic-bearing / D standalone) and emits a per-candidate equivalence proof.
+
+**3. Retire 13 Class A wrappers** — each same-named skill gains `user-invocable: true` + `metadata.command_description`; the 13 wrapper files are deleted.
+
+`pr-comments` kept (renaming `pr-comments-review` judged disproportionate: 12-file blast radius incl. cross-skill delegation + Rust test fixtures).

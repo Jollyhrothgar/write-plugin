@@ -1,0 +1,30 @@
+```
+FINDINGS: 9
+
+- SPAN: "`commit-desired-deployment-state`"
+  ASK: Is this a job name in ci.yaml? What exactly does it do beyond stamping the sha, and how does "force-syncs the tree" work (which tree, from where, what command)?
+
+- SPAN: "Kargo Warehouse mints Freight"
+  ASK: What do Warehouse and Freight mean in this setup (what does the Warehouse watch, and what is a Freight unit composed of)? The reader is not stated to know Kargo.
+
+- SPAN: "`app-prod`"
+  ASK: Which ArgoCD instance/cluster is this Application in, and is it the only one? (Minor, but is it a real Application name I can look up?)
+
+- SPAN: "**#485's gate is inert on both surfaces.**"
+  ASK: What is #485 (a PR? an issue? in which repository), what does it do, and what is "the gate"? What are the "both surfaces"?
+
+- SPAN: "the #413 edit"
+  ASK: What is #413 (PR/issue, which repository), and what was the edit that it made that the gate should have caught?
+
+- SPAN: "three-dot `base...HEAD`, `--diff-filter=MDRT`"
+  ASK: Which exact git operation is meant (diff vs. log, merge-base semantics), what are `base` and `HEAD` in the CI context, and what files/paths is the filter applied to?
+
+- SPAN: "the prek hook self-disables in CI"
+  ASK: What is prek, which hook is meant, where is it configured, and what condition causes it to disable itself in CI?
+
+- SPAN: "the outage"
+  ASK: Which outage? What happened, when, and what was affected?
+
+- SPAN: "**Kargo rollback lever 2 is undiscoverable.**"
+  ASK: What are the other levers (where is lever 1)? What series of rollback options is this part of, and what does "wedged stage" mean concretely?
+```

@@ -1,0 +1,30 @@
+```
+FINDINGS: 9
+
+- SPAN: "OPS-913"
+  ASK: Which tracker is this in, and what is the ticket's title/content? The draft only says "data fix" with no statement of what data is broken or what "live break" refers to. Ravi wrote some of these tickets but the draft doesn't say whether this is one of his, and the rewritten versions are unread.
+
+- SPAN: "the amendment; gates the rest"
+  ASK: Amendment to what document, spec, or policy? What does it change, and why does it gate the later tickets?
+
+- SPAN: "OPS-914** (Notion/overlay spike)"
+  ASK: What is the "overlay" (an overlay on what, containing what)? What question is the spike meant to answer, and what does Notion have to do with it?
+
+- SPAN: "overlay"
+  ASK: In the OPS-915 line, is this the same overlay as in the OPS-914 spike? What data does it add to the generator's output, and from where?
+
+- SPAN: "generator"
+  ASK: What does the generator generate (what artifact, in what format), and where does it live? What does "Linear + Slack joined on email" produce: a user/people table, a directory, or something else?
+
+- SPAN: "the data skill"
+  ASK: What is "the data skill" (which skill system or tool is it a skill of, and what does it do)? What data does it serve?
+
+- SPAN: "rewire four consumers"
+  ASK: Which four consumers are they, and what are they being rewired from and to?
+
+- SPAN: "drift check upstream-side"
+  ASK: What is being compared with what in the drift check, and what does "upstream-side" mean here (which repo or side runs it)?
+
+- SPAN: "`aic doctor` reports when installed data is behind the registry"
+  ASK: What is `aic` (the CLI tool, and does Ravi own it)? What is "installed data," where is it installed, and which "registry" is meant? Also, why does this appear to cover two tickets, OPS-917 and OPS-920, and what is each one's share?
+```

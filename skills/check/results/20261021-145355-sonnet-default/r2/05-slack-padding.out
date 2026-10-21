@@ -1,0 +1,32 @@
+```
+FINDINGS: 8
+
+- SPAN: "OPS-912 and its children"
+  ASK: What is OPS-912 (title/goal), and which child tickets are meant? Is there a link? Ravi scoped work, but I can't tell that this key is that work.
+
+- SPAN: "to match"
+  ASK: Match what? What did the tickets get rewritten to match: the design in the next paragraph, or something else?
+
+- SPAN: "the canceled ones have pointer comments"
+  ASK: Which tickets were canceled, and what do the comments point to?
+
+- SPAN: "`skills/acme-team/team.yaml`"
+  ASK: Which repository does this path live in? What fields does a "record per person" contain?
+
+- SPAN: "Zero derived copies anywhere"
+  ASK: What are the derived copies of this data that currently exist, and where are they?
+
+- SPAN: "the four tools that read `docs/team.md` today"
+  ASK: Which four tools are they, and in which repo is `docs/team.md`?
+
+- SPAN: "generating it kills upstream drift"
+  ASK: Generating what, from what upstream source, and by what process? What is the "upstream" that drifts?
+
+- SPAN: "handle validation covers the one field we can't derive"
+  ASK: Which field is this, what kind of handle is it, and what does validation check it against? Why can't it be derived?
+
+- SPAN: "delbot reading the checkout plus aic staleness reporting"
+  ASK: What are delbot and aic? What "checkout" does delbot read, and what does aic's staleness reporting measure and report?
+```
+
+Correction: the header count should read 9, since I listed nine findings.

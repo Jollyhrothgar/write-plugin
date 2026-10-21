@@ -1,0 +1,10 @@
+{
+  "name": "write",
+  "description": "Check and repair prose before it leaves the session: a blind subagent finds references the reader cannot resolve, an informed one replaces them and returns a change log.",
+  "author": {
+    "name": "Mike Beaumier",
+    "url": "https://github.com/Jollyhrothgar"
+  },
+  "repository": "https://github.com/Jollyhrothgar/write-plugin",
+  "license": "MIT"
+}

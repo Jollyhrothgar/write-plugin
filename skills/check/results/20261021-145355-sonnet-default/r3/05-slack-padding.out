@@ -1,0 +1,24 @@
+```
+FINDINGS: 7
+
+- SPAN: "OPS-912 and its children"
+  ASK: What is OPS-912 (a Linear issue/epic?), what was it originally about, and what are its child issues? Rewritten to match what, exactly?
+
+- SPAN: "the canceled ones have pointer comments"
+  ASK: Which issues were canceled, and what do the pointer comments point to?
+
+- SPAN: "The design:"
+  ASK: What problem is this design solving? The draft never states what was scoped or what "match" refers to, so which prior scope or decision does this design implement?
+
+- SPAN: "`skills/acme-team/team.yaml`"
+  ASK: Which repository is this path in? What fields does a "record per person" contain?
+
+- SPAN: "Zero derived copies anywhere"
+  ASK: What is a "derived copy" here, and which copies exist today that would be removed?
+
+- SPAN: "the four tools that read `docs/team.md` today"
+  ASK: Which four tools are they, which repo holds `docs/team.md`, and how is it produced or maintained today?
+
+- SPAN: "One file kills cross-repo drift; generating it kills upstream drift; handle validation covers the one field we can't derive; delbot reading the checkout plus aic staleness reporting covers the rest."
+  ASK: Which repos drift from each other? What is "upstream" and what is the file generated from? Which handle (and on what platform) is the field that can't be derived, and what does validation check? What is delbot, what "checkout" does it read, what is aic, and what is the "rest" being covered?
+```

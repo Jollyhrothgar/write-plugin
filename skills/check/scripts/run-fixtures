@@ -1,0 +1,105 @@
+#!/usr/bin/env bash
+# Run every fixture through the clarity-detector prompt and save raw output.
+#
+# Each fixture is a READER line and a DRAFT. The detector runs as a headless
+# `claude -p` with every tool switched off, so it can only work from the
+# prompt text — which is the point. Its system prompt is the body of
+# agents/clarity-detector.md; the frontmatter is only routing.
+#
+# Usage: run-fixtures [-n repeats] [-m model] [-e effort] [-j jobs] [-o dir]
+#   -n  runs per fixture, default 1. Output varies run to run on identical
+#       input, so use 3 or more before trusting a finding's presence or
+#       absence.
+#   -m  model, default the agent's frontmatter model.
+#   -e  effort (low|medium|high|xhigh|max), default the CLI's.
+#   -j  calls in flight at once, default 9.
+#   -o  results root, default results/ beside this skill.
+#
+# Writes <root>/<stamp>-<model>-<effort>/r<i>/<fixture>.out, plus the system
+# prompt and settings the run used. Score it with
+#   score-fixtures <root>/<stamp>-<model>-<effort>
+#
+# WRITE_CHECK_FIXTURES and WRITE_CHECK_AGENT override where the fixtures and
+# the agent file are read from.
+
+set -uo pipefail
+
+HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SKILL="$(dirname "$HERE")"
+PLUGIN="$(cd "$SKILL/../.." && pwd)"
+FIXTURES="${WRITE_CHECK_FIXTURES:-$SKILL/fixtures}"
+AGENT="${WRITE_CHECK_AGENT:-$PLUGIN/agents/clarity-detector.md}"
+
+# One call. xargs re-invokes this script with --one, because bash 3.2 (the
+# macOS default) has no `wait -n` to bound a pool of background jobs.
+if [ "${1:-}" = "--one" ]; then
+  model="$2" effort="$3" fixture="$4" out="$5" system="$6"
+  name="$(basename "$fixture" .prompt.txt)"
+  effort_flag=""
+  [ "$effort" != "default" ] && effort_flag="--effort $effort"
+
+  # Run from an empty directory so no project CLAUDE.md reaches the detector.
+  # It must know only what the fixture tells it.
+  cd "$(mktemp -d)" || exit 1
+  rc=0
+  # shellcheck disable=SC2086
+  claude -p --model "$model" $effort_flag --tools "" \
+    --system-prompt-file "$system" \
+    --strict-mcp-config --setting-sources "" --disable-slash-commands \
+    --no-session-persistence \
+    < "$fixture" > "$out/$name.out" 2> "$out/$name.err" || rc=$?
+
+  if [ "$rc" -ne 0 ]; then
+    echo "$(basename "$out")/$name FAILED rc=$rc (see $out/$name.err)"
+  else
+    n="$(grep -o 'FINDINGS: [0-9]*' "$out/$name.out" | head -1)"
+    echo "$(basename "$out")/$name ok ${n:-<no FINDINGS line>}"
+  fi
+  exit "$rc"
+fi
+
+REPEATS=1 MODEL="" EFFORT="default" JOBS=9 ROOT="$SKILL/results"
+while getopts "n:m:e:j:o:" opt; do
+  case "$opt" in
+    n) REPEATS="$OPTARG" ;;
+    m) MODEL="$OPTARG" ;;
+    e) EFFORT="$OPTARG" ;;
+    j) JOBS="$OPTARG" ;;
+    o) ROOT="$OPTARG" ;;
+    *) sed -n '2,23p' "${BASH_SOURCE[0]}" | sed 's/^# \{0,1\}//'; exit 2 ;;
+  esac
+done
+
+[ -r "$AGENT" ] || { echo "cannot read agent file $AGENT" >&2; exit 2; }
+ls "$FIXTURES"/*.prompt.txt > /dev/null 2>&1 \
+  || { echo "no fixtures in $FIXTURES" >&2; exit 2; }
+[ -n "$MODEL" ] || MODEL="$(sed -n 's/^model:[[:space:]]*//p' "$AGENT" | head -1)"
+[ -n "$MODEL" ] || { echo "no model given and none in $AGENT" >&2; exit 2; }
+
+OUT="$ROOT/$(date +%Y%m%d-%H%M%S)-$MODEL-$EFFORT"
+mkdir -p "$OUT"
+OUT="$(cd "$OUT" && pwd)"
+
+# The body after the frontmatter is the detector's whole instruction set.
+awk 'n >= 2 { print; next } /^---$/ { n++ }' "$AGENT" > "$OUT/detector-system.md"
+{
+  echo "model:   $MODEL"
+  echo "effort:  $EFFORT"
+  echo "repeats: $REPEATS"
+  echo "agent:   $AGENT"
+  echo "claude:  $(claude --version 2>/dev/null)"
+} > "$OUT/run.txt"
+
+cat "$OUT/run.txt"
+echo
+
+for i in $(seq 1 "$REPEATS"); do
+  mkdir -p "$OUT/r$i"
+  for p in "$FIXTURES"/*.prompt.txt; do
+    printf '%s\0' "--one" "$MODEL" "$EFFORT" "$p" "$OUT/r$i" "$OUT/detector-system.md"
+  done
+done | xargs -0 -n 6 -P "$JOBS" "${BASH_SOURCE[0]}" | sort
+
+echo
+echo "raw output in $OUT"
+echo "score with:  $HERE/score-fixtures $OUT"

@@ -1,0 +1,14 @@
+READER: A later agent session with no memory of the session that wrote this note, opening it to work on the deploy pipeline.
+
+DRAFT:
+## Where it stands
+`master` → CI (`.github/workflows/ci.yaml`) builds ECR images tagged `:latest` **and** `:<sha>` → a separate `commit-desired-deployment-state` job stamps the sha into `infrastructure/helm/acme/values.yaml` and force-syncs the tree onto branch `release/desired` → Kargo Warehouse mints Freight → stages dev → staging → prod, each rendering Helm output to `release/stage/<env>` → ArgoCD Application `app-prod` syncs namespace `acme-prod`.
+
+**Prod auto-promotes and has no verification gate of its own.** dev and staging each run verification; prod only consumes staging-verified Freight.
+
+## Live traps in this area
+
+**#485's gate is inert on both surfaces.** Its detection logic is correct and would catch the #413 edit (three-dot `base...HEAD`, `--diff-filter=MDRT`). But the prek hook self-disables in CI.
+
+## Standing gaps this exposed
+- **Kargo rollback lever 2 is undiscoverable.** Re-promoting the last verified Freight heals a wedged stage in minutes and was viable throughout the outage, but is documented only in `infrastructure/kargo/AGENTS.md` and went unused.

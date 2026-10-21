@@ -1,0 +1,29 @@
+```
+FINDINGS: 8
+
+- SPAN: "OPS-912 and its children"
+  ASK: What is OPS-912 (title/what it covers), and which child tickets are meant? Is there a link? Ravi scoped work, but I can't tell which ticket this is or what the rewrite changed.
+
+- SPAN: "to match"
+  ASK: Match what? What did the tickets previously say, and what design are they now being aligned to (the design is only described in the next paragraph)?
+
+- SPAN: "the canceled ones have pointer comments"
+  ASK: Which tickets were canceled, and what do the pointer comments point to?
+
+- SPAN: "`skills/acme-team/team.yaml`"
+  ASK: Which repository does this path live in? Does the file already exist or is it proposed? What fields make up a "record"?
+
+- SPAN: "Zero derived copies anywhere"
+  ASK: What are the "derived copies" of what? Which copies exist today that would be eliminated?
+
+- SPAN: "the four tools that read `docs/team.md` today"
+  ASK: Which four tools are these, and in which repo is `docs/team.md`? What is its relationship to team.yaml?
+
+- SPAN: "One file kills cross-repo drift; generating it kills upstream drift"
+  ASK: What is "cross-repo drift" and "upstream drift"? What is "it" being generated (team.yaml?), from what source, and by what process?
+
+- SPAN: "handle validation covers the one field we can't derive"
+  ASK: Which field is this (handle of what kind: GitHub, Slack, Linear?), why can't it be derived, and what does validation check against?
+
+- SPAN: "delbot reading the checkout plus aic staleness reporting covers the rest"
+  ASK: What is delbot, which checkout does it read, what is "aic", what does "staleness reporting" report, and what is "the rest" that is being covered?

@@ -1,0 +1,18 @@
+```
+FINDINGS: 5
+
+- SPAN: "413 edited an existing migrations file"
+  ASK: Is 413 the pull request at the linked URL (acme/platform PR 413)? The sentence doesn't say what 413 is, and the link appears only after the sentence. Which migrations file did it edit, and what was the edit?
+
+- SPAN: "https://github.com/acme/platform/pull/413/changes#diff-3c69da4e7e461a8bcc92164c8bb1e31378fece55527fb9e95b38c7d3c4929696"
+  ASK: Which file does this diff anchor point to, and what change does it show? The link is bare and doesn't say what the reader will find there.
+
+- SPAN: "migration 0001"
+  ASK: Which file is migration 0001 (path/name), and is it the same file that PR 413 edited? The draft never states this link explicitly.
+
+- SPAN: "the comment addition"
+  ASK: What comment was added, and where? The draft earlier says only that the file was "edited", never that the edit was a comment, so which change was reverted, and by what commit or PR?
+
+- SPAN: "the hash of every migration it has in code against the hash of each (stored in the db)"
+  ASK: What exactly is hashed (file contents, normalised SQL, a checksum column), and in which table is the stored hash kept? Also, what does "each" refer to in "the hash of each"?
+```

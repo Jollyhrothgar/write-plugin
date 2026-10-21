@@ -1,0 +1,30 @@
+```
+FINDINGS: 9
+
+- SPAN: "`commit-desired-deployment-state` job"
+  ASK: Is this a job defined in ci.yaml, and what exactly does it do beyond stamping the sha and force-syncing? Is it the only thing that writes to `release/desired`?
+
+- SPAN: "Kargo Warehouse mints Freight"
+  ASK: Kargo is not introduced. What are a Warehouse and Freight here, which Warehouse is meant, and what does it watch to mint Freight (the image tags, the `release/desired` branch, or both)?
+
+- SPAN: "stages dev → staging → prod"
+  ASK: Are these Kargo Stage resources? Where are they defined, and what is the promotion mechanism between them?
+
+- SPAN: "Prod auto-promotes and has no verification gate of its own."
+  ASK: What does "verification" mean here concretely (which Kargo verification, which checks)? Where is the auto-promotion policy configured?
+
+- SPAN: "**#485's gate is inert on both surfaces.**"
+  ASK: What is #485 (a PR or issue, in which repo, with a link)? What is "the gate", and what are the "both surfaces"?
+
+- SPAN: "the #413 edit"
+  ASK: What is #413 (PR or issue, which repo), and what was the edit, to which file, and why was it harmful?
+
+- SPAN: "three-dot `base...HEAD`, `--diff-filter=MDRT`"
+  ASK: Is this a git diff command? What are `base` and `HEAD` in the context, and which change types does MDRT cover as the gate intends?
+
+- SPAN: "the prek hook self-disables in CI"
+  ASK: What is prek, which hook is meant, where is it configured, and what condition causes it to disable itself in CI?
+
+- SPAN: "**Kargo rollback lever 2 is undiscoverable.**"
+  ASK: What is lever 1, and what series of levers is this part of? Also, what "outage" is referred to in "throughout the outage", and what does "wedged stage" mean concretely?
+```

@@ -1,0 +1,133 @@
+#!/usr/bin/env python3
+"""Replace real identifiers with stand-ins, the same way every time.
+
+The map is a JSON list of entries, kept outside any repository because it is
+the key that reverses the substitution:
+
+  [
+    {"from": "Jane Doe", "to": "Pat Lee"},
+    {"from": "Jane", "to": "Pat"},
+    {"pattern": "(?<![A-Za-z0-9])CORP-(\\d+)", "to": "PROJ-\\1"}
+  ]
+
+A "from" entry matches that exact text as a whole token: not inside a longer
+word, so "Jane" does not touch "Janet". A "pattern" entry is a regular
+expression and "to" may use its groups. Longer "from" entries win over shorter
+ones, then patterns are tried in order, all in one pass, so a replacement is
+never replaced again.
+
+Usage:
+  pseudonymize apply [--map FILE] [--dry-run] PATH...
+      Rewrite every file under PATH in place, and rename files whose names
+      match. --dry-run prints what would change and writes nothing.
+  pseudonymize check [--map FILE] PATH...
+      Fail if any "from" text or pattern still appears, ignoring case, in a
+      file's contents or name. Run it after apply and before every commit.
+
+The map defaults to $WRITE_PSEUDONYMS, else ~/.config/write-plugin/pseudonyms.json.
+"""
+import argparse
+import json
+import os
+import pathlib
+import re
+import sys
+
+DEFAULT_MAP = pathlib.Path(
+    os.environ.get("WRITE_PSEUDONYMS", "~/.config/write-plugin/pseudonyms.json")
+).expanduser()
+TOKEN = r"(?<![A-Za-z0-9]){}(?![A-Za-z0-9])"
+
+
+def load(path):
+    entries = json.loads(path.read_text())
+    literals = sorted((e for e in entries if "from" in e), key=lambda e: -len(e["from"]))
+    patterns = [e for e in entries if "pattern" in e]
+    rules = [(re.compile(TOKEN.format(re.escape(e["from"]))), e["to"], False) for e in literals]
+    rules += [(re.compile(e["pattern"]), e["to"], True) for e in patterns]
+    return entries, rules
+
+
+def substitute(text, rules):
+    combined = re.compile("|".join(f"(?:{r.pattern})" for r, _, _ in rules))
+
+    def one(m):
+        s = m.group(0)
+        for rule, to, is_pattern in rules:
+            hit = rule.fullmatch(s) if not is_pattern else rule.match(s)
+            if hit and hit.group(0) == s:
+                return hit.expand(to) if is_pattern else to
+        return s
+
+    return combined.sub(one, text)
+
+
+def files(paths):
+    for p in map(pathlib.Path, paths):
+        if p.is_dir():
+            yield from (f for f in sorted(p.rglob("*")) if f.is_file() and ".git" not in f.parts)
+        else:
+            yield p
+
+
+def apply(rules, paths, dry_run):
+    for f in list(files(paths)):
+        try:
+            text = f.read_text()
+        except UnicodeDecodeError:
+            print(f"skip (binary): {f}", file=sys.stderr)
+            continue
+        new = substitute(text, rules)
+        if new != text:
+            n = sum(a != b for a, b in zip(text.splitlines(), new.splitlines()))
+            print(f"{'would edit' if dry_run else 'edited'}: {f} ({n} lines)")
+            if not dry_run:
+                f.write_text(new)
+        name = substitute(f.name, rules)
+        if name != f.name:
+            print(f"{'would rename' if dry_run else 'renamed'}: {f} -> {name}")
+            if not dry_run:
+                f.rename(f.with_name(name))
+
+
+def check(entries, paths):
+    probes = [re.compile(TOKEN.format(re.escape(e["from"])), re.I) for e in entries if "from" in e]
+    probes += [re.compile(e["pattern"], re.I) for e in entries if "pattern" in e]
+    leaks = 0
+    for f in files(paths):
+        for probe in probes:
+            if probe.search(f.name):
+                print(f"{f}: name matches {probe.pattern}")
+                leaks += 1
+        try:
+            lines = f.read_text().splitlines()
+        except UnicodeDecodeError:
+            continue
+        for i, line in enumerate(lines, 1):
+            for probe in probes:
+                m = probe.search(line)
+                if m:
+                    print(f"{f}:{i}: {m.group(0)!r}")
+                    leaks += 1
+    print(f"{leaks} leak(s)" if leaks else "clean", file=sys.stderr)
+    return 1 if leaks else 0
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("command", choices=["apply", "check"])
+    ap.add_argument("--map", type=pathlib.Path, default=DEFAULT_MAP)
+    ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("paths", nargs="+")
+    args = ap.parse_args()
+    if not args.map.exists():
+        sys.exit(f"no map at {args.map}")
+    entries, rules = load(args.map)
+    if args.command == "apply":
+        apply(rules, args.paths, args.dry_run)
+        return 0
+    return check(entries, args.paths)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,0 +1,30 @@
+```
+FINDINGS: 9
+
+- SPAN: "Closes PLAT-4841"
+  ASK: What is PLAT-4841 (which tracker, what does it say), and is there a link? A bare ticket key gives me nothing to check the change against.
+
+- SPAN: "OpenCode"
+  ASK: What is OpenCode in this context, and is it a tool I am assumed to know? Which "Claude Code and Cursor" behavior is being matched?
+
+- SPAN: "the now-redundant thin wrapper commands"
+  ASK: Which commands are these, where do they live, and what makes a command a "thin wrapper"? Why are they redundant after this change?
+
+- SPAN: "a proven-equivalent invocation surface"
+  ASK: What does "invocation surface" mean here, and what is the proof, by what criteria is equivalence defined, and where can I see it?
+
+- SPAN: "`aic` plugin"
+  ASK: What is `aic`: a product, repository, or plugin system? Is "aic plugin" the name of a plugin type or of the host project?
+
+- SPAN: "`user-invocable: true`"
+  ASK: Where is this field defined (skill frontmatter?), who reads it, and what is the default when it is absent?
+
+- SPAN: "A pure pass-through / B name-mismatch / C logic-bearing / D standalone"
+  ASK: What exactly distinguishes each class? What is a command "passing through" to, and what is it "mismatched" against? Are these the only four classes?
+
+- SPAN: "`metadata.command_description`"
+  ASK: Where is this metadata field defined and consumed? Is it new in this change or existing?
+
+- SPAN: "12-file blast radius incl. cross-skill delegation + Rust test fixtures"
+  ASK: Which 12 files? What does "blast radius" count (references to the name? files needing edit?), what is "cross-skill delegation," and which Rust test fixtures are involved? Also, what is `pr-comments` versus `pr-comments-review` (which is the command and which is the skill), and why is renaming the latter the remedy considered?
+```

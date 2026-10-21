@@ -1,0 +1,18 @@
+```
+FINDINGS: 5
+
+- SPAN: "413 edited an existing migrations file"
+  ASK: Is "413" the pull request in acme/platform (the link later suggests so)? It's used as a bare subject before any statement of what it is. Which migrations file was edited, and what change was made?
+
+- SPAN: "that had already been applied to the live dev/stage/prod databases"
+  ASK: Which file path is meant, and how do you know it had been applied to all three databases?
+
+- SPAN: "migration 0001"
+  ASK: Is this the file edited in the PR? What is its full filename or path, and is it the same as "an existing migrations file" in the first line?
+
+- SPAN: "the migration step"
+  ASK: Is this the same as the "migration (init) step" mentioned later? Is it a separate pipeline stage, an init container, or a startup hook of the API server, and where is it defined?
+
+- SPAN: "the comment addition to migration 0001"
+  ASK: What comment was added, and was it the only change in PR 413? The first paragraph says only "edited", so the reader cannot tell this refers to the same change. Also, what exactly was reverted (a revert commit, a new PR, or a manual edit), and where?
+```

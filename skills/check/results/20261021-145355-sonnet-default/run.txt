@@ -1,0 +1,5 @@
+model:   sonnet
+effort:  default
+repeats: 3
+agent:   /Users/mike/workspace/write-plugin/agents/clarity-detector.md
+claude:  2.1.306 (Claude Code)

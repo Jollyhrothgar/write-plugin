@@ -1,0 +1,36 @@
+```
+FINDINGS: 11
+
+- SPAN: "#485"
+  ASK: Is this a pull request (Sam wrote it, so likely), and what does it do, in which repo? Which change is "the gap" being measured against?
+
+- SPAN: "the 413 outage"
+  ASK: What is 413 (an incident number, ticket, PR?), and what happened in the outage?
+
+- SPAN: "the three-dot diff"
+  ASK: Which exact git operation is meant (e.g. `git diff A...B`), against which refs, and what role does it play in the detection logic?
+
+- SPAN: "`MDRT`"
+  ASK: What is MDRT? Is it a variable, a diff-filter flag, a function, or an acronym, and what do the letters stand for?
+
+- SPAN: "the `0001` edit"
+  ASK: Which edit is this? Which file is 0001 (full migration filename), who made the edit, and how does it relate to the outage?
+
+- SPAN: "neither enforcement surface"
+  ASK: Which two surfaces are meant? The prek hook and the `migrations-immutable` workflow, or something else?
+
+- SPAN: "the prek hook"
+  ASK: What is prek, which hook is meant (its name and config location), and what does it check?
+
+- SPAN: "the script takes its defaulted-base skip"
+  ASK: Which script, and what is the "defaulted-base skip"? What default base does it use, and when does it skip?
+
+- SPAN: "`migrations-immutable`"
+  ASK: Is this a CI workflow, a job, or a check name? In which file is it defined, and what does it do?
+
+- SPAN: "`migrations-append-only`"
+  ASK: Is this the prek hook ID? How does it relate to `migrations-immutable`, and is it the same check under another name?
+
+- SPAN: "`lockstep.rs`"
+  ASK: Where is this file (path/crate), and what does it keep in lockstep with what? Also, what is "0009" (full filename of `0009_feature_flags.sql`) and which enum is meant?
+```

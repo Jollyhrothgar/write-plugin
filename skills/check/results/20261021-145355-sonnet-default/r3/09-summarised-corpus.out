@@ -1,0 +1,36 @@
+```
+FINDINGS: 11
+
+- SPAN: "**2. Wrong audience model.**"
+  ASK: Numbered 2 in what series? Items 1, 3, 4 are absent (only 2 and 5 appear). What is this list: failure categories, edits, rules? Where do the others live?
+
+- SPAN: "re-read before you start anything"
+  ASK: Re-read what? Which message or document was the draft this quote comes from, and who was it sent to?
+
+- SPAN: "please land it now"
+  ASK: Land what? What is "it" (a PR, a change, a doc), and in which system?
+
+- SPAN: "thanks for asking before starting"
+  ASK: Asking what, starting what? Which exchange does this come from?
+
+- SPAN: "an implementer awaiting permission"
+  ASK: Who is this implementer, and what were they waiting for permission to do? Who is the actual recipient?
+
+- SPAN: "received → I own this → here's the plan → comments?"
+  ASK: Is this a template for a message structure, or the literal edit? What plan is meant, and what is being owned?
+
+- SPAN: "Mike"
+  ASK: Who is Mike (role, relation to the author and recipient)? Is he the user, the recipient, or a reviewer?
+
+- SPAN: "after Mike stated the facts"
+  ASK: Which facts did Mike state, and where? The reader cannot see the transcript.
+
+- SPAN: "Where I went further… Your version changed provenance but kept location… I'd initially cut it. Wrong call…"
+  ASK: What is "it" that was cut? What do "provenance" and "location" refer to here (what thing's provenance and location)? Whose "version" is "your version," and of what artifact?
+
+- SPAN: "the message narrated its own revision history."
+  ASK: Which message, sent to whom, and what revision history was it narrating (revisions of what)?
+
+- SPAN: "Replaced with the plan as it now is."
+  ASK: Which plan, and what is its current state? What was it before?
+```

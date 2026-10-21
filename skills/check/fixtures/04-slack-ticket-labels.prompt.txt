@@ -1,0 +1,4 @@
+READER: Ravi Raman, an engineer on the same team. He wrote five of the tickets referenced here, several weeks ago. He has not read the rewritten versions.
+
+DRAFT:
+Sequencing: **OPS-913** (data fix — live break, independent, lands now) → **OPS-918** (the amendment; gates the rest) → **OPS-914** (Notion/overlay spike) → **OPS-915** (generator: Linear + Slack joined on email, plus overlay) → **OPS-916** (the data skill + rewire four consumers) → **OPS-917/OPS-920** (drift check upstream-side; `aic doctor` reports when installed data is behind the registry) → **OPS-919** (delete the repo copies, repoint links).

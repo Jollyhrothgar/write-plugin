@@ -1,0 +1,165 @@
+#!/usr/bin/env python3
+"""Score fixture runs against expectations.json.
+
+Three categories, because a finding being correct and a finding being worth
+fixing are different questions:
+
+  require    the detector must flag this. Missing it is a failure. An entry
+             may be a list, meaning any one of those spans counts — the test is
+             whether the defect was caught, not how it was quoted.
+  forbid     the detector must not flag this. It resolves for the stated
+             reader, so flagging it is a false positive.
+  tolerable  the detector may flag this. It is real ambiguity that the surface
+             does not require fixing. Neither credit nor penalty.
+
+Anything flagged that appears in none of the three lists is reported as
+unclassified, so new findings surface rather than passing silently. They are
+not scored — a detector that finds a real defect nobody listed should not fail
+for it.
+
+Matching is case-insensitive substring against the whole output, because the
+detector quotes spans verbatim and we are testing whether it noticed the
+reference, not how it phrased the question.
+
+Usage:
+  score-fixtures [dir]         score every run under dir (default: the newest
+                               directory run-fixtures wrote)
+  score-fixtures -v [dir]      also list unclassified spans per run
+
+A run is any directory holding <fixture>.out files, so dir may be one run
+(r1/) or a whole run-fixtures output with r1..rN inside. With two or more
+runs it also reports which failures recur and which spans are stable.
+
+WRITE_CHECK_FIXTURES overrides where expectations.json is read from.
+"""
+import collections
+import json
+import os
+import pathlib
+import re
+import sys
+
+SKILL = pathlib.Path(__file__).resolve().parents[1]
+FIXTURES = pathlib.Path(os.environ.get("WRITE_CHECK_FIXTURES", SKILL / "fixtures"))
+RESULTS = SKILL / "results"
+EXPECT = json.loads((FIXTURES / "expectations.json").read_text())
+
+
+def spans(text):
+    """Every SPAN the detector reported, verbatim."""
+    return re.findall(r'SPAN:\s*"(.*?)"', text, re.S)
+
+
+def score_run(results):
+    rows = []
+    for name in sorted(EXPECT):
+        exp = EXPECT[name]
+        out_path = results / f"{name}.out"
+        if not out_path.exists():
+            rows.append((name, "NO OUTPUT", ["file missing"], []))
+            continue
+
+        out = out_path.read_text()
+        low = out.lower()
+        found = spans(out)
+        m = re.search(r"FINDINGS:\s*(\d+)", out)
+        count = int(m.group(1)) if m else None
+
+        problems = []
+        for span in exp["require"]:
+            alts = span if isinstance(span, list) else [span]
+            if not any(a.lower() in low for a in alts):
+                problems.append(f"missed required: {alts[0]!r}")
+        for span in exp["forbid"]:
+            if span.lower() in low:
+                problems.append(f"false positive: {span!r}")
+        if count is None:
+            problems.append("no FINDINGS: line — output format not followed")
+
+        flat = []
+        for span in exp["require"]:
+            flat.extend(span if isinstance(span, list) else [span])
+        classified = [s.lower() for s in flat + exp["forbid"] + exp["tolerable"]]
+        unclassified = [
+            f for f in found
+            if not any(c in f.lower() or f.lower() in c for c in classified)
+        ]
+
+        verdict = "pass" if not problems else "FAIL"
+        rows.append((name, f"{verdict} ({count} findings)", problems, unclassified))
+    return rows
+
+
+def report(results, root, show_unclassified):
+    label = results.relative_to(root) if results != root else results.name
+    print(f"--- {label}")
+    rows = score_run(results)
+    passed = sum(1 for r in rows if r[1].startswith("pass"))
+    for name, verdict, problems, unclassified in rows:
+        print(f"{name:28} {verdict}")
+        for p in problems:
+            print(f"{'':28}   ! {p}")
+        if show_unclassified:
+            for u in unclassified:
+                short = u if len(u) <= 60 else u[:57] + "..."
+                print(f"{'':28}   ? unclassified: {short!r}")
+    print(f"{passed} passed, {len(rows) - passed} failed, {len(rows)} total\n")
+    return rows
+
+
+def summary(runs, all_rows):
+    """What recurs across runs: failures, then stable and flaky spans."""
+    n = len(runs)
+    passed = sum(1 for rows in all_rows for r in rows if r[1].startswith("pass"))
+    total = sum(len(rows) for rows in all_rows)
+    print(f"=== {n} runs: {passed}/{total} fixture runs passed\n")
+
+    tally = collections.Counter(
+        f"{name}: {p}" for rows in all_rows for name, _, problems, _ in rows
+        for p in problems
+    )
+    if tally:
+        print("failures, by how many runs they occurred in:")
+        for line, k in sorted(tally.items(), key=lambda kv: (-kv[1], kv[0])):
+            print(f"  {k}/{n}  {line}")
+        print()
+
+    print("spans, stable = flagged in every run:")
+    for name in sorted(EXPECT):
+        seen = collections.Counter()
+        present = 0
+        for r in runs:
+            f = r / f"{name}.out"
+            if f.exists():
+                present += 1
+                seen.update({s.lower() for s in spans(f.read_text())})
+        if not present:
+            continue
+        stable = sum(1 for k in seen.values() if k == present)
+        print(f"  {name:28} stable {stable:2}   flaky {len(seen) - stable:2}")
+
+
+def find_runs(root):
+    return sorted({p.parent for p in root.rglob("*.out")})
+
+
+if __name__ == "__main__":
+    args = sys.argv[1:]
+    verbose = "-v" in args
+    args = [a for a in args if a != "-v"]
+    if args:
+        root = pathlib.Path(args[0]).resolve()
+    else:
+        tops = [p for p in RESULTS.glob("*") if p.is_dir()] if RESULTS.exists() else []
+        if not tops:
+            sys.exit("no results found; run run-fixtures first")
+        root = max(tops, key=lambda p: p.stat().st_mtime)
+
+    runs = find_runs(root)
+    if not runs:
+        sys.exit(f"no .out files under {root}")
+    all_rows = [report(r, root, verbose) for r in runs]
+    if len(runs) > 1:
+        summary(runs, all_rows)
+    ok = all(r[1].startswith("pass") for rows in all_rows for r in rows)
+    sys.exit(0 if ok else 1)

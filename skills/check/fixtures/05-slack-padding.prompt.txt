@@ -1,0 +1,8 @@
+READER: Ravi Raman, an engineer on the same team, reading a handoff message about work he scoped.
+
+DRAFT:
+I've rewritten OPS-912 and its children to match. All rewritten in Linear; the canceled ones have pointer comments.
+
+The design: `skills/acme-team/team.yaml` holds one record per person. Zero derived copies anywhere; the one-time cost is rewiring the four tools that read `docs/team.md` today.
+
+Does the direction work for you? One file kills cross-repo drift; generating it kills upstream drift; handle validation covers the one field we can't derive; delbot reading the checkout plus aic staleness reporting covers the rest.

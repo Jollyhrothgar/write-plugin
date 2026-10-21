@@ -1,0 +1,36 @@
+```
+FINDINGS: 11
+
+- SPAN: "**2. Wrong audience model.**"
+  ASK: Numbered 2 in what series? What is the full list (1, 3, 4, and so on), and what is this document a catalogue of: failure modes, edits, or something else? What does "audience model" mean here?
+
+- SPAN: "re-read before you start anything"
+  ASK: Re-read what? What was the message, who wrote it, and in what context (Slack, a PR, something else)?
+
+- SPAN: "please land it now"
+  ASK: Land what? What does "land" mean here (merge, ship, commit)?
+
+- SPAN: "thanks for asking before starting"
+  ASK: Asking whom, and about what? Starting which task?
+
+- SPAN: "an implementer awaiting permission"
+  ASK: Who is this implementer? Was the actual recipient someone else, and who? Which situation is being described?
+
+- SPAN: "Reframed to received → I own this → here's the plan → comments?"
+  ASK: Is this a template or a sequence of moves in the rewritten message? What was "received" (what did the recipient receive), and what is "the plan"?
+
+- SPAN: "Mike"
+  ASK: Who is Mike, what is his role relative to the author and the recipient, and what "facts" did he state?
+
+- SPAN: "**5. Changelog relitigation.**"
+  ASK: What are items 1, 3, and 4? What "changelog" is meant: a changelog of which artifact? What does "relitigation" refer to specifically?
+
+- SPAN: "Where I went further… Your version changed provenance but kept location… I'd initially cut it. Wrong call…"
+  ASK: Went further on what? What is "your version," whose is it, and what are "provenance" and "location" in this case? What was "it" that was cut?
+
+- SPAN: "the message narrated its own revision history"
+  ASK: Which message, sent to whom, and what revision history was it narrating (revisions of what artifact)?
+
+- SPAN: "Replaced with the plan as it now is."
+  ASK: Which plan? What is its content, and what was it a plan for?
+```

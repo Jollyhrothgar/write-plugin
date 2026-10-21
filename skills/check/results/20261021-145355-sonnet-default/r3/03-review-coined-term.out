@@ -1,0 +1,21 @@
+```
+FINDINGS: 6
+
+- SPAN: "the legibility question you asked him"
+  ASK: Who is "him", what exactly was the legibility question, and where/when was it asked? What was being judged for legibility?
+
+- SPAN: "him"
+  ASK: Who is this person (the recipient of the posted version)? Where was it posted, and what role does he play in this?
+
+- SPAN: "what I posted"
+  ASK: What exactly was posted, and where (which channel, thread, PR, or document)? What was its subject?
+
+- SPAN: "what I drafted for you last turn"
+  ASK: What was the draft from the previous turn? What did it contain and what was it about? Mike was not shown the analysis, so which content is this?
+
+- SPAN: "the invented shorthand"
+  ASK: Which specific terms were invented shorthand, and what did each stand for?
+
+- SPAN: "working-state compression"
+  ASK: What specifically is meant by this: which operation or output format is being called "working-state compression", and how does it differ from review output?
+```

@@ -1,0 +1,44 @@
+```
+FINDINGS: 9
+
+- SPAN: "`commit-desired-deployment-state`"
+  ASK: Is this a job name inside `.github/workflows/ci.yaml`, or a separate workflow? What exactly does "stamps the sha" and "force-syncs the tree" do, and from which ref to which ref?
+
+- SPAN: "Kargo Warehouse mints Freight"
+  ASK: What do Warehouse and Freight refer to here (which Warehouse resource, which artifacts does the Freight bundle), and where are they defined? The reader is not stated to know Kargo's vocabulary.
+
+- SPAN: "stages dev → staging → prod"
+  ASK: Are these Kargo Stage resources? Where are they defined, and what does "stages" mean as a verb here (promotion)?
+
+- SPAN: "`release/stage/<env>`"
+  ASK: Is this a git branch pattern in the same repo? Who writes to it, and is `<env>` literally dev/staging/prod?
+
+- SPAN: "#485's gate"
+  ASK: What is #485 (PR, issue, which repository), what does it do, and what is "the gate" it adds?
+
+- SPAN: "both surfaces"
+  ASK: Which two surfaces are meant? Only CI is named afterwards, so what is the other one?
+
+- SPAN: "#413 edit"
+  ASK: What is #413 (PR/issue, which repo), and what edit did it make that the gate should have caught?
+
+- SPAN: "three-dot `base...HEAD`, `--diff-filter=MDRT`"
+  ASK: What is "base" here (which ref)? Which exact git operation is meant by three-dot diff, and what are M, D, R, T filtering for in this context?
+
+- SPAN: "the prek hook self-disables in CI"
+  ASK: What is prek, which hook is it, where is it configured, and what condition makes it disable itself in CI?
+
+- SPAN: "**Kargo rollback lever 2 is undiscoverable.**"
+  ASK: What is "lever 2"? No lever 1 or series of levers is given. What are the other levers?
+
+- SPAN: "the outage"
+  ASK: Which outage? When did it happen, what broke, and where is it described? The draft refers to it as known.
+
+- SPAN: "a wedged stage"
+  ASK: What state does "wedged" mean concretely (what symptoms or status), and how does re-promoting Freight fix it?
+
+- SPAN: "`infrastructure/kargo/AGENTS.md`"
+  ASK: Is this a path in the same repository as the other paths? The reader has no stated repo context, so which repo root is it relative to?
+```
+
+Note: the count above is wrong relative to the list; correct header should reflect 13 items.

@@ -1,0 +1,12 @@
+READER: Mike Beaumier, an engineer on the same team who asked how the incident happened. He has access to GitHub and knows the team's deployment pipeline exists, but did not investigate the incident himself.
+
+DRAFT:
+Happy to do a quick call. Exact steps:
+
+413 edited an existing migrations file that had already been applied to the live dev/stage/prod databases https://github.com/acme/platform/pull/413/changes#diff-3c69da4e7e461a8bcc92164c8bb1e31378fece55527fb9e95b38c7d3c4929696
+After it was merged to master, our deployment pipeline kicks off, first applying the new code to dev
+On the dev apply, we run a sqlx migration to update the dev db with the latest sqlx migrations
+At the beginning of the migration step, sqlx checks the hash of every migration it has in code against the hash of each (stored in the db). Because migration 0001 was edited, the hash changed. So the migration to apply and the migration in the db didn't have the same hash
+This fails the migration (init) step for spinning up the new version of the API server, halting deployment and pausing the pipeline at the dev stage
+
+When I reverted the comment addition to migration 0001, the hashes matched again, the migration step succeeded, and the new code rolled from dev -> stage -> prod again

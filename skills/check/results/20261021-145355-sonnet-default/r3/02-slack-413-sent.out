@@ -1,0 +1,21 @@
+```
+FINDINGS: 6
+
+- SPAN: "413 edited an existing migrations file"
+  ASK: Is "413" the pull request at the linked URL (acme/platform PR 413)? The sentence never says so, and the link appears only afterward. Which migrations file was edited, and what was the edit?
+
+- SPAN: "Happy to do a quick call. Exact steps:"
+  ASK: Which incident or question is this answering? What failed, and when? The draft never states what the incident was before listing steps.
+
+- SPAN: "migration 0001"
+  ASK: Is this the existing migrations file that 413 edited? What is its full filename and path, and what does it contain?
+
+- SPAN: "the hash of every migration it has in code against the hash of each (stored in the db)"
+  ASK: Which hash is computed (of the file contents? of the SQL?), and in which table or column is it stored? What exactly is compared against what?
+
+- SPAN: "the migration (init) step for spinning up the new version of the API server"
+  ASK: Is this an init container, a startup hook, or a pipeline stage? Which service is "the API server", and where is this step defined?
+
+- SPAN: "When I reverted the comment addition to migration 0001"
+  ASK: What comment was added? The draft earlier said only that 413 "edited" the file, so is the comment the whole edit? Which revert commit or PR was this, and who made it?
+```

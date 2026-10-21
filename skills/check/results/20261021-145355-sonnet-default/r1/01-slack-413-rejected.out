@@ -1,0 +1,36 @@
+```
+FINDINGS: 11
+
+- SPAN: "#485"
+  ASK: Which repository is this, and is it the pull request Sam wrote? (Reader is the author, but the number alone doesn't say what the PR changes or confirm it's the one meant.)
+
+- SPAN: "the 413 outage"
+  ASK: What is 413 — an incident number, an HTTP status, a PR? What broke, and when?
+
+- SPAN: "the three-dot diff"
+  ASK: Which exact git operation is meant (e.g. `A...B` against which refs), and where in the PR is it used?
+
+- SPAN: "`MDRT`"
+  ASK: What is MDRT? Is it a variable, a function, a rule name, or an acronym, and what does it do in the detection logic?
+
+- SPAN: "the `0001` edit"
+  ASK: Which edit to which file is this? Who made it, in what PR or commit, and what did it change?
+
+- SPAN: "the prek hook"
+  ASK: Which hook is this (name in the config), and what does it run? Is prek the tool name?
+
+- SPAN: "the defaulted-base skip"
+  ASK: What code path in the script is this? What is the default base, and when is the skip triggered?
+
+- SPAN: "`migrations-immutable`"
+  ASK: Is this a CI workflow, a job, or a check name? Where is it defined, and how does it differ from the prek hook?
+
+- SPAN: "`migrations-append-only`"
+  ASK: Is this the prek hook ID in `.mise.toml`'s config? Is it the same check as `migrations-immutable`, or a different one?
+
+- SPAN: "`lockstep.rs`"
+  ASK: Where is this file, and what does it test or enforce in lockstep with what?
+
+- SPAN: "`0009_feature_flags.sql`"
+  ASK: Which directory is this migration in, and what does it contain that lockstep asserts against (which enum)?
+```

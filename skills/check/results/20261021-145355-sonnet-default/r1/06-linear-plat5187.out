@@ -1,0 +1,36 @@
+```
+FINDINGS: 11
+
+- SPAN: "A review finding argued that code violated its documented design intent"
+  ASK: Which review, of which code, and which design document? The draft never says what code or document is meant.
+
+- SPAN: "The citation was accurate. It was also **eleven lines after the statement that says the opposite**"
+  ASK: Which document and which line was cited, and what is "the statement that says the opposite"? Neither is quoted or identified, so what does it say and where does it sit?
+
+- SPAN: "the round"
+  ASK: What is "the round"? What process does it belong to, and who ran it?
+
+- SPAN: "`should_fix [correctness]`"
+  ASK: What system defines this category and label? What other severities and categories exist, and what does should_fix mean there?
+
+- SPAN: "Round-6 review"
+  ASK: What is a "round" in this review process? Where are rounds 1–5, and what scope or cycle does round 6 cover?
+
+- SPAN: "`acme/platform` PR #413"
+  ASK: Is this a GitHub repository (or another host)? Is there a link? What does PR #413 change?
+
+- SPAN: "the vendor-risk report's `overallSafety.materiallyUnsafe` flag"
+  ASK: What is the vendor-risk report, and where is it generated? Where is `overallSafety.materiallyUnsafe` defined, and what values does it take?
+
+- SPAN: "a free-form model judgement"
+  ASK: Which model produces this judgement, and in what step? What does "free-form" mean here (unstructured text, or an unconstrained boolean)?
+
+- SPAN: "the 13-rule catalog"
+  ASK: What is this catalog? Where does it live, and what are its 13 rules?
+
+- SPAN: "does not influence the computed verdict"
+  ASK: Which verdict is this, and how and where is it computed? What is it a verdict of?
+
+- SPAN: "Two of twelve findings in this round were refuted on their premises. The other ([PLAT-5187](https://linear.app/acme/issue/PLAT-5187))"
+  ASK: Which twelve findings, and which two were refuted? "The other" is ambiguous: it implies a third finding, and it is unclear how the PLAT-5187 link relates to the two refuted ones or to this ticket. What does PLAT-5187 say, and what fix was proposed and why was it not implementable?
+```

@@ -1,0 +1,21 @@
+```
+FINDINGS: 6
+
+- SPAN: "the legibility question you asked him"
+  ASK: What exactly was the legibility question, when did Mike ask it, and who is "him"?
+
+- SPAN: "him"
+  ASK: Who is this person (the recipient of the posted version)? The draft never names him.
+
+- SPAN: "what I posted"
+  ASK: What was posted, where (which channel, thread, or PR), and to whom?
+
+- SPAN: "what I drafted for you last turn"
+  ASK: Which draft is this, and what did it contain? Mike did not read the analysis, so what is the "last turn" output being compared against?
+
+- SPAN: "the invented shorthand"
+  ASK: Which specific terms were invented shorthand, and what did each stand for?
+
+- SPAN: "working-state compression"
+  ASK: What does this label mean, and which specific content in the draft is an example of it?
+```

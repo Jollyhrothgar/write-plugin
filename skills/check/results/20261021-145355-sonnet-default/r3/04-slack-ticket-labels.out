@@ -1,0 +1,36 @@
+```
+FINDINGS: 11
+
+- SPAN: "Sequencing:"
+  ASK: Sequencing of what? What is the overall piece of work or project these tickets belong to, and why does the order matter?
+
+- SPAN: "**OPS-913** (data fix — live break, independent, lands now)"
+  ASK: What data is being fixed, what is the live break (what is failing, for whom), and what does "independent" mean here: independent of which other tickets?
+
+- SPAN: "**OPS-918** (the amendment; gates the rest)"
+  ASK: What is "the amendment"? An amendment to what document, spec, or policy? What does it change, and why does it gate the later tickets?
+
+- SPAN: "**OPS-914** (Notion/overlay spike)"
+  ASK: What is "the overlay"? Overlay of what onto what? What question is the spike meant to answer, and how does Notion figure in it?
+
+- SPAN: "**OPS-915** (generator: Linear + Slack joined on email, plus overlay)"
+  ASK: What does the generator generate, and what is its output? What is being joined: which records from Linear and Slack, and what does joining on email produce? What is "overlay" in this context?
+
+- SPAN: "**OPS-916** (the data skill + rewire four consumers)"
+  ASK: What is "the data skill": a skill in which tool or system? Which four consumers are being rewired, and rewired to what?
+
+- SPAN: "**OPS-917/OPS-920** (drift check upstream-side;"
+  ASK: What is drifting from what? What does "upstream-side" mean here: upstream of which system, and where does the check run? Why are two tickets given as one item?
+
+- SPAN: "`aic doctor`"
+  ASK: What is `aic`? Which tool or CLI is this, and what does the doctor command do beyond what is stated?
+
+- SPAN: "installed data is behind the registry"
+  ASK: What is "installed data": installed where, and by what? Which registry is meant, and what is its contents?
+
+- SPAN: "**OPS-919** (delete the repo copies, repoint links)"
+  ASK: Which repo copies, copies of what, in which repos? Which links are being repointed, and to where?
+
+- SPAN: "→"
+  ASK: Does the arrow mean strict "must land before" ordering, or a rough sequence? Does OPS-913 actually precede OPS-918, given it is called independent?
+```

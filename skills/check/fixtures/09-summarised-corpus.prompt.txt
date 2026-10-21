@@ -1,0 +1,12 @@
+READER: A later session building a writing skill from this document. It has no access to the transcript the entries were drawn from.
+
+DRAFT:
+**2. Wrong audience model.**
+*Draft:* "re-read before you start anything" / "please land it now" / "thanks for asking before starting" — written to an implementer awaiting permission.
+*Edit:* Reframed to received → I own this → here's the plan → comments? after Mike stated the facts.
+*Rule:* Before drafting, state in one line who the recipient is and what the message does to them.
+
+**5. Changelog relitigation.**
+*Draft:* "Where I went further… Your version changed provenance but kept location… I'd initially cut it. Wrong call…" — the message narrated its own revision history.
+*Edit:* Mike: "Don't relitigate the changelog in a slack message." Replaced with the plan as it now is.
+*Rule:* The recipient gets the current state, not the derivation.
